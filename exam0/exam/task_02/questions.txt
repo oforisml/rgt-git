@@ -1,0 +1,7 @@
+1) What is the Container Hostname?
+2) What is the container IP?
+3) What is the primary process ?
+4) Who is 1000 user ?
+5) How can I copy a file from a container to a host (without Volume) ?
+6) What is the command that shows you the container environment variables (inside the container) ?
+7) Which animal did you saw in task 01 ?
