@@ -1,0 +1,32 @@
+version: "3.3"
+services:
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+    container_name: es
+		# CREATING NETWORK
+    networks:
+      - flask-es
+  flask-app:
+    container_name: flask-app
+    build: ./flask-app
+		# CREATING NETWORK
+    networks:
+      - flask-es
+      - flask-nginx
+    networks:
+  nginx:
+    image: nginx:1.23.2
+    networks:
+     # CREATING NETWORK
+      - flask-nginx
+    volumes:
+      - ./nginx/conf/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./flask-app/templates:/usr/share/nginx
+      - ./flask-app/static:/usr/share/nginx/static
+    ports:
+      - "5555:80"
+
+networks:
+   flask-es: {}
+   flask-nginx: {}
+
