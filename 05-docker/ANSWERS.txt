@@ -1,0 +1,35 @@
+########## Question 1
+docker pull mysql/mysql-server:5.6
+docker exec docker run --name mysql -e MYSQL_ROOT_PASSWORD=0f0r1smL.  -d mysql/mysql-server:5.6
+docker exec -it mysql bash
+docker exec -it mysql mysql -uroot -p
+
+########## Question 2
+
+docker run -p 8877:3306 --name mysql -e MYSQL_ROOT_PASSWORD=0f0r1smL. -d mysql/mysql-server:5.6 
+netcat -l 8877
+The line above showed that the port is already in use
+############  Question 3
+docker run  --name mysql -e MYSQL_ROOT_PASSWORD=0f0r1smL. --volume "$(pwd)/mysql":/etc/mysql/conf.d/ -v dumped-sql:/var/lib/mysql/  -p 8877:3306  -d mysql:5.6
+
+docker exec -i mysql sh -c 'exec mysql -uroot -p0f0r1smL.' < ./mysql/dump.sql/
+
+docker exec -it mysql bash
+mysql -u root -p
+ 
+show databases;
+use mydb;
+select * from SuperHeroes;
+Insert INTO SuperHeroes(user_id, username, first_name, last_name, gender, password, status) values(19, 'Aquaman', 'Jason','Mammoa', 'Male', 'ak25rklskksjammd88cef1dfd09889',1);
+
+docker stop mysql
+docker start mysql
+docker exec -i mysql bash
+
+mysql -u root -p 
+
+use mydb;
+slect * from SuperHeroes where username='Aquaman';
+
+
+########### Question 4
