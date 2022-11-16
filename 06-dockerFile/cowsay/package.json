@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "express_cowsay": "file:src"
+  }
+}
