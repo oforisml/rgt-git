@@ -25,7 +25,7 @@ services:
     container_name: lavagna-thin
     build:
       context: .
-      dockerfile: Dockerfile.thin
+      dockerfile: Dockerfile
     networks:
       - db-net-thin
       - proxy-net-thin
