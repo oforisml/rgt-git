@@ -39,4 +39,4 @@ networks:
   jenkins-gitlab-net:
 
 volumes:
-  jenkins_home:
+  jenkins_home: {}
