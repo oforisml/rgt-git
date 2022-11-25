@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+# LAVAGNA DB
+  
+
+# LAVAGNA 
+  lavagna:
+    image: 644435390668.dkr.ecr.us-west-2.amazonaws.com/ofori-lavagna:${VERSION}
+    #container_name: lavagna:${VERSION}
+    networks:
+      - db-net-thin
+      - proxy-net-thin
+    
+
+#Lavagna Proxy
+  lavagna-proxy:
+    image: 644435390668.dkr.ecr.us-west-2.amazonaws.com/ofori-lavagna-proxy:${VERSION}
+    #container_name: lavagna-proxy:${VERSION}
+    networks:
+      - proxy-net-thin
+
+    ports:
+      - 80:80
+    depends_on:
+      - lavagna
+
+
+  lavagna-docs:
+    image: 644435390668.dkr.ecr.us-west-2.amazonaws.com/ofori-lavagna-docs:${VERSION}
+    #container_name: lavagna-docs:${VERSION}
+    ports: 
+      - 8081:45001
+
+
+networks:
+  db-net-thin:
+    # driver: bridge
+  proxy-net-thin:
+    # driver: bridge
+
+volumes:
+  data-vol-thin:
