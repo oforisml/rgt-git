@@ -29,10 +29,8 @@ services:
         # gitlab_rails['gitlab_shell_ssh_port'] = 3030
         # gitlab_rails['']
         # Add any other gitlab.rb configuration here, each on its own line
-    command:
-      - sh chmod 0755 /opt/gitlab/sv/redis-exporter/env
-      - sh chgrp root /opt/gitlab/sv/redis-exporter/env
-      - sh chwon root /opt/gitlab/sv/redis-exporter/env
+    entrypoint: ./entrypoint.sh
+      
 
     ports:
       - '80:80'
