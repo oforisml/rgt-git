@@ -18,6 +18,23 @@ services:
 #      - jenkins-gitlab-net
   #  depends_on:
    #   - web
+  # jenkins:
+  #   container_name: jenkins
+  #   image: jenkins/jenkins:lts-jdk11
+  #   restart: on-failure
+  #   ports:
+  #     - "8080:8080"
+  #     - "5000:5000"
+  #     - "4000:4000"
+  #   volumes:
+  #     - jenkins_home:/var/jenkins_home
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - /usr/bin/docker:/usr/bin/docker
+  #   hostname: jenkins
+  #   networks: 
+  #     - jenkins-gitlab-net
+  #   depends_on:
+  #     - web
 
   web:
     image: 'gitlab/gitlab-ee:latest'
@@ -28,10 +45,19 @@ services:
         external_url 'http://ec2-52-25-253-13.us-west-2.compute.amazonaws.com:8080'
         gitlab_rails['gitlab_shell_ssh_port'] = 3030
        # Add any other gitlab.rb configuration here, each on its own line
+
+        # gitlab_rails['gitlab_shell_ssh_port'] = 3030
+        # gitlab_rails['']
+        # Add any other gitlab.rb configuration here, each on its own line
+    command:
+      - sh chmod 0755 /opt/gitlab/sv/redis-exporter/env
+      - sh chgrp root /opt/gitlab/sv/redis-exporter/env
+      - sh chwon root /opt/gitlab/sv/redis-exporter/env
+
+
     ports:
       - '80:80'
       - '3030:22'
-      # - '22:22'
     volumes:
       - '$GITLAB_HOME/config:/etc/gitlab'
       - '$GITLAB_HOME/logs:/var/log/gitlab'
