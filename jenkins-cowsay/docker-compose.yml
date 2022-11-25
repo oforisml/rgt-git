@@ -25,7 +25,7 @@ services:
     hostname: 'gitlab'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://ec2-52-25-253-13.us-west-2.compute.amazonaws.com'
+        external_url 'http://ec2-52-25-253-13.us-west-2.compute.amazonaws.com:8080'
         gitlab_rails['gitlab_shell_ssh_port'] = 3030
         # Add any other gitlab.rb configuration here, each on its own line
     ports:
