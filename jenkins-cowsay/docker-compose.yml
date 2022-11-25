@@ -8,9 +8,9 @@ services:
     ports:
       - "8080:8080"
       - "5000:5000"
+      - "4000:4000"
     volumes:
       - jenkins_home:/var/jenkins_home
-      # - jenkin
     hostname: jenkins
     networks: 
       - jenkins-gitlab-net
@@ -38,5 +38,5 @@ services:
 networks:
   jenkins-gitlab-net:
 
-# volumes:
-#   jenkins_home:
+volumes:
+  jenkins_home:
