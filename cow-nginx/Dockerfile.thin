@@ -1,0 +1,16 @@
+FROM node:latest AS builder
+WORKDIR /app
+COPY . .
+WORKDIR /app/src
+RUN npm install
+
+FROM node:alpine
+WORKDIR /app
+COPY src/entrypoint.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+COPY v.txt .
+COPY --from=builder /app/src .
+WORKDIR /app/src
+
+ENTRYPOINT [ "entrypoint.sh" ]
