@@ -6,9 +6,9 @@ services:
     image: jenkins/jenkins:lts-jdk11
     restart: on-failure
     ports:
-      - "8080:8080"
-      - "5000:5000"
-      - "4000:4000"
+      - '8080:8080'
+      - '5000:5000'
+      - '4000:4000'
     volumes:
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
