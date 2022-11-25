@@ -46,10 +46,17 @@ services:
   #       # gitlab_rails['gitlab_shell_ssh_port'] = 3030
   #      # Add any other gitlab.rb configuration here, each on its own line
 
+<<<<<<< HEAD
   #       # gitlab_rails['gitlab_shell_ssh_port'] = 3030
   #       # gitlab_rails['']
   #       # Add any other gitlab.rb configuration here, each on its own line
   #   entrypoint: ./entrypoint.sh
+=======
+        # gitlab_rails['gitlab_shell_ssh_port'] = 3030
+        # gitlab_rails['']
+        # Add any other gitlab.rb configuration here, each on its own line
+#    entrypoint: ./entrypoint.sh
+>>>>>>> ac0a0019df78115e71474e85312cf06fdc1a40a0
       
 
 
