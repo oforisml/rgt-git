@@ -19,13 +19,13 @@ services:
     hostname: jenkins
     networks: 
       - jenkins-gitlab-net
-    depends_on:
-      - web
+    # depends_on:
+    #   - web
 
   web:
     image: 'gitlab/gitlab-ee:latest'
     restart: always
-    hostname: 'gitlab'
+    hostname: gitlab
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://ec2-52-25-253-13.us-west-2.compute.amazonaws.com'
@@ -41,6 +41,8 @@ services:
     shm_size: '256m'
     networks:
       - jenkins-gitlab-net
+    env_file:
+      - .env
 
 networks:
   jenkins-gitlab-net:
