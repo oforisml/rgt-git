@@ -1,7 +1,7 @@
 FROM jenkins/jenkins:2.121.3
  
 USER root
-USER jenkins
+
 RUN apt-get update -qq \
     && apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common 
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
@@ -12,3 +12,4 @@ RUN add-apt-repository \
 RUN apt-get update  -qq \
     && apt-get install docker-ce=17.12.1~ce-0~debian -y
 RUN usermod -aG docker jenkins
+USER jenkins
