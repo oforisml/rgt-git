@@ -28,11 +28,12 @@ services:
     hostname: 'gitlab'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://ec2-52-25-253-13.us-west-2.compute.amazonaws.com:8080'
+        external_url 'http://ec2-52-25-253-13.us-west-2.compute.amazonaws.com'
         # gitlab_rails['gitlab_shell_ssh_port'] = 3030
+      GITLAB_ROOT_PASSWORD: ${GITLAB_ROOT_PASSWORD}
     ports:
       - '80:80'
-      - '3030:3030'
+      - '3030:22'
     volumes:
       - '$GITLAB_HOME/config:/etc/gitlab'
       - '$GITLAB_HOME/logs:/var/log/gitlab'
