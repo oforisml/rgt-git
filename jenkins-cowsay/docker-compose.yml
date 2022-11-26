@@ -20,7 +20,7 @@ services:
     networks: 
       - jenkins-gitlab-net
     depends_on:
-      - web
+      - gitlab
 
   gitlab:
     container_name: gitlab
