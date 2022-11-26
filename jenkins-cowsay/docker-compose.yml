@@ -22,7 +22,7 @@ services:
     depends_on:
       - web
 
-  web:
+  gitlab:
     container_name: gitlab
     image: 'gitlab/gitlab-ee:latest'
     restart: always
