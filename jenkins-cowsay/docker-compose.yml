@@ -32,7 +32,7 @@ services:
         # gitlab_rails['gitlab_shell_ssh_port'] = 3030
     ports:
       - '80:80'
-      - '3030:22'
+      - '3030:3030'
     volumes:
       - '$GITLAB_HOME/config:/etc/gitlab'
       - '$GITLAB_HOME/logs:/var/log/gitlab'
