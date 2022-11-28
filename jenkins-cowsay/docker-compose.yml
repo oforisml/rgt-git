@@ -15,22 +15,23 @@ services:
     volumes:
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/bin/docker:/usr/bin/docker
+#      - /usr/bin/docker:/usr/bin/docker
     hostname: jenkins
     networks: 
       - jenkins-gitlab-net
     depends_on:
-      - gitlab
-
+      gitlab:
+        condition: service_healthy
+      
   gitlab:
     container_name: gitlab
-    image: 'gitlab/gitlab-ee:latest'
+    image: 'gitlab/gitlab-ce'
     restart: always
     hostname: 'gitlab'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://ec2-52-25-253-13.us-west-2.compute.amazonaws.com'
-        # gitlab_rails['gitlab_shell_ssh_port'] = 3030
+         gitlab_rails['gitlab_root_password'] = "1234567890"
     #  GITLAB_ROOT_PASSWORD: ${GITLAB_ROOT_PASSWORD}
     ports:
       - '80:80'
