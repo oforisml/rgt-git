@@ -1,0 +1,25 @@
+version: '3.6'
+services:
+
+  jenkins:
+    container_name: jenkins
+    build: 
+     context: .
+     dockerfile: Dockerfile.jenkins
+    restart: on-failure
+    ports:
+      - '8000:8080'
+      - '50000:50000'
+      - '4000:80'
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    hostname: jenkins
+    networks: 
+      - jenkins-gitlab-net
+      
+networks:
+  jenkins-gitlab-net:
+
+volumes:
+ jenkins_home: {}
