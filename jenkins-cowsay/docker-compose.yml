@@ -41,7 +41,8 @@ services:
       image: docker.bintray.io/jfrog/artifactory-oss:latest
       container_name: artifactory
       ports:
-        - 8081:8082 # for artifactory communication
+        - 8081:8081 # for artifactory communication
+        - 8082: 8082
       networks:
         - jenkins-gitlab.net
       volumes:
