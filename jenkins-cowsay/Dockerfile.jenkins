@@ -15,6 +15,7 @@ RUN apt install unzip zip -y  && curl -s "https://get.sdkman.io" | bash
 SHELL ["/bin/bash", "-c"]
 RUN source "$HOME/.sdkman/bin/sdkman-init.sh"  && sdk install java 8.0.302-open   
  
+ 
 RUN usermod -aG docker jenkins
 
 
