@@ -9,7 +9,7 @@ RUN add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/debian \
    $(lsb_release -cs) \
    stable"
-RUN RUN apt-get install python3 -y \
+RUN apt-get install python3 -y \
     && apt-get install python3-pip -y
 RUN apt-get update  -qq \
     && apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin docker-compose -y
