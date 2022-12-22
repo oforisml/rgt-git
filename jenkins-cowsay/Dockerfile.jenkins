@@ -16,7 +16,7 @@ RUN apt-get update  -qq \
 RUN apt install unzip zip -y  && curl -s "https://get.sdkman.io" | bash 
 SHELL ["/bin/bash", "-c"]
 RUN source "$HOME/.sdkman/bin/sdkman-init.sh"  && sdk install java 8.0.302-open   
- 
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install
 RUN usermod -aG docker jenkins
 
 
