@@ -1,0 +1,71 @@
+version: '3.9'
+services:
+    jenkins:
+      container_name: jenkins
+      build: 
+        context: .
+        dockerfile: Dockerfile.jenkins
+      ports:
+        - "8080:8080"
+      networks:
+        - jenkins-gitlab.net
+      volumes:
+        - jenkins_home:/var/jenkins_home
+        - /var/run/docker.sock:/var/run/docker.sock
+      restart: on-failure
+      depends_on:
+        gitlab:
+              condition: service_healthy
+
+    gitlab:
+      container_name: gitlab
+      restart: always
+      image: gitlab/gitlab-ce
+      hostname: gitlab
+      environment:
+        GITLAB_OMNIBUS_CONFIG: |
+          external_url 'http://cyclonea0.mooo.com'
+            gitlab_rails['initial_root_password'] = '123@admin'
+      ports:
+        - "8088:80"
+        - "8022:22"
+      networks:
+        - jenkins-gitlab.net
+      volumes:
+        - gitlab_data:/etc/gitlab
+        - gitlab-log:/var/log/gitlab
+        - gitlab-config:/var/opt/gitlab
+      shm_size: '256m'
+    artifactory:
+#      image: docker.bintray.io/jfrog/artifactory-cpp-ce
+      image: docker.bintray.io/jfrog/artifactory-oss:latest
+      container_name: artifactory
+      ports:
+        - "8081:8081" # for artifactory communication
+        - "8082:8082"
+      networks:
+        - jenkins-gitlab.net
+      volumes:
+        - artifactory:/var/opt/jfrog/artifactory
+        - /etc/localtime:/etc/localtime:ro
+      restart: always
+      logging:
+        driver: json-file
+        options:
+          max-size: "50m"
+          max-file: "10"
+      ulimits:
+          nproc: 65535
+          nofile:
+            soft: 32000
+            hard: 40000
+
+
+networks:
+  jenkins-gitlab.net:
+volumes:
+  jenkins_home:
+  gitlab_data:
+  gitlab-log:
+  gitlab-config:
+  artifactory:

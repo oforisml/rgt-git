@@ -1,0 +1,16 @@
+import string,re
+def main(sentence):
+	if len(sentence.strip())!=0:
+#		sentence=sentence.replace(","," ")
+#		sentene=sentence.replace("'","")
+#		new_string = sentence.translate(str.maketrans('', '', string.punctuation))
+#		words=new_string.strip().replace("'","")
+		#words = re.split('[,.;:\'"(){}]', sentence)
+		punc = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+		
+		words=set(words.split())
+		print(sentence)
+		return (str(max(words, key=len)))
+	else:
+		return ""
+#main("I am a go@od !lad")

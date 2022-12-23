@@ -1,0 +1,24 @@
+# Fat Image
+FROM maven:3.6.3-openjdk-8 AS builder
+WORKDIR /app
+COPY . .
+RUN mvn verify
+
+FROM openjdk:8-jre-alpine
+
+RUN apk update && apk add ca-certificates && update-ca-certificates && apk add openssl
+WORKDIR /app
+
+COPY ./entrypoint-thin/entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY --from=builder /app/target/*.war .
+
+ENV DB_DIALECT MYSQL
+ENV DB_URL jdbc:mysql://lavagna-db:3306/lavagna?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
+ENV DB_USER lavagna
+ENV DB_PASS "password"
+ENV SPRING_PROFILE dev
+
+EXPOSE 8080
+
+ENTRYPOINT [ "entrypoint.sh" ]

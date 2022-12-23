@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+  builder:
+    build: project
+    container_name: "lavangna-app"
+    volumes:
+      - lavagna-app:/output
+
+  lavagnawebapp:
+    build: proxy
+    container_name: "lavagna-proxy"
+    volumes:
+      - lavagna-app:/usr/share/nginx/html
+    ports:
+      - "5555:80"
+    depends_on:
+      - builder  
+volumes:
+    lavagna-app:

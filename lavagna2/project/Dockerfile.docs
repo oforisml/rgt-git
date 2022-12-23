@@ -1,0 +1,11 @@
+FROM maven:3.6.3-openjdk-8 AS builder
+WORKDIR /app
+COPY . .
+RUN mvn clean stampo:build
+COPY ./entrypoint-docs/entrypoint.sh /usr/local/sbin/
+RUN chmod +x /usr/local/sbin/entrypoint.sh
+
+
+EXPOSE 8081
+ENTRYPOINT [ "entrypoint.sh" ] 
+# CMD tail -f /dev/null

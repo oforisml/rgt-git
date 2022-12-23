@@ -1,0 +1,21 @@
+import string,re
+def main(sentence):
+	seps = ",.;: )({ } \"'"
+	bank =[]
+
+	word=""
+
+	print("MAIN SENTENCE",sentence)
+	if sentence !="":
+		for i in sentence:
+			if i in seps and word!='':
+				bank.append(word.strip())
+				word=""
+			else:
+				word+=i
+		maxed =  max(bank, key=len)
+		
+
+
+
+print(main("I am a littleman but,i,am,jude,I{A} (a;skdfm;)"))

@@ -1,0 +1,46 @@
+local untracked
+stagged
+committed and nothing to commit, working tree clean
+local untracked
+stagged
+committed
+local untracked
+####### Exercise 2  ######
+attached state
+The master branch is on the most recent commit which is above the displayed commits
+Yes all the files are there
+The last content they had after the change was made
+The head is pointed to the new branch 'fix/1'
+It is in ATTACHED MODE
+It is attache to branch 'fix/1'
+The master branch is displayed next to the new branch 'fix/1' and they are comma (,) separated
+Yes I can see the master branch
+the tag is next to the master branch
+the head is on the top of the logs and is pointing to the master branch
+the head is in attach mode
+the head is attached to the master
+the master branch on the same line as the head and after the arrow pointing from the HEAD
+The tag is on the same line as the Head and is right after the master
+Yes I can see the master branch
+Yes all the files are there
+Their contents are all in tact with no change
+
+################# Excercise 3 ##################
+commited
+From FOLDER1 git log shows the head and branch
+From FOLDER2 git log shows the head and branch, the remote origin etc on the same line
+The logs on the remote repo shows basically commit ids, commit messages and the person who committed the file
+From the Folder one you see the last commit which was the last change before the clonning in Folder2
+In folder1 as usual, the tag is fixed on the specific commit 
+In folder2 the tag is not showing and the file is now updated with the new lines added from the other folder [FOLDER1]
+The remote repository has the last commit at the top
+################### Excercise 4 ###################
+
+Local Branches: master
+Remote Branches: master, h2, feature1, feature2, feature3, prithvi 
+Remote Branches: master, h2, feature1, feature2, feature3, prithvi 
+############ EXERCISE 5 ########## 
+
+
+
+############# Excercise 6 ##########

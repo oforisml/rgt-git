@@ -1,0 +1,23 @@
+Git-Docker Challenge
+--------------------
+Congrats for entering into the Git-Docker Challenge container.
+
+* Note you will need to pass files to the host - Did you use a Volume?
+
+
+Here is what you need to do:
+(1) There is a git worktree in the ~/exam/task_01 folder:
+        - rebase and merge all "feature/" branches into "master"
+        - Make sure you merge correctly. It should be obvious how (git log --oneline --all --graph).
+
+
+(2) after finishing task 1:
+        a) Go into ~/exam/task_02 folder
+        b) execute questions.sh, answer the questions. (the questions inside the ~/exam/task_02/questions.txt)
+           - questions.sh will create file you need to submit in the /exam/submit folder
+        c) execute prepare-answer.sh, passing in your name as a single parameter - e.g. "Paul Graham"
+           - prepare-answer.sh will create the file you need to submit in the ~/exam/submit folder
+
+
+(3) upload the files inside ~/exam/submit folder.
+

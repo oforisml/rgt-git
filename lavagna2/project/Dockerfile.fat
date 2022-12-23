@@ -1,0 +1,19 @@
+# Fat Image
+FROM maven:3.6.3-openjdk-8
+WORKDIR /app
+COPY . .
+COPY entrypoint.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+RUN apt update && apt upgrade && apt install mysql-server && apt install mysql-client
+
+RUN mvn verify -Dmaven.skip.test=true
+
+ENV DB_DIALECT MYSQL
+ENV DB_URL jdbc:mysql://ofori-lavagna-db.csbxzjhemvqj.us-west-2.rds.amazonaws.com:3306/lavagna?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
+ENV DB_USER admin
+ENV DB_PASS 1234567890
+ENV SPRING_PROFILE dev
+
+
+ENTRYPOINT [ "entrypoint.sh" ]

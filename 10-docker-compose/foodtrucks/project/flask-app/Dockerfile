@@ -1,0 +1,21 @@
+FROM alpine:3.13.12 as compiled 
+
+WORKDIR /app
+COPY package.json /app
+COPY . .
+
+RUN apk add npm && npm install && npm run build
+
+# PYTHON
+FROM alpine:3.13.12 as runtime
+COPY --from=compiled /app/app.py /app/make/app.py
+
+WORKDIR /app
+COPY requirements.txt /app
+
+COPY . .
+RUN apk add python2 && python -m ensurepip && pip install -r requirements.txt
+
+EXPOSE 5550
+
+CMD ["python", "/app/make/app.py"]

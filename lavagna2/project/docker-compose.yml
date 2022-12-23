@@ -1,0 +1,82 @@
+version: '3.8'
+services:
+# LAVAGNA DB
+  # lavagna-db:
+  #   container_name: "lavagna-db"
+  #   image: mysql:5.7
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD : "admin"
+  #     MYSQL_DATABASE : "lavagna"
+  #     MYSQL_PASSWORD : "password"
+  #     MYSQL_USER : "lavagna"
+  #   volumes:
+  #     - data-vol-thin:/var/lib/mysql
+  #   networks:
+  #     - db-net-thin
+  #   healthcheck:
+  #     test: ["CMD","mysqladmin", "ping", "-h", "lavagna-db", "-u", "root", "-padmin"]
+  #     interval: 10s
+  #     timeout: 30s
+  #     retries: 5
+
+
+
+
+# LAVAGNA 
+  lavagna:
+    # image: lavagna:2.3.1
+    image: "lavagna:${VERSION}"
+
+    container_name: lavagna
+    build:
+      context: .
+      dockerfile: Dockerfile.fat
+    networks:
+      - db-net-thin
+      - proxy-net-thin
+      
+    # depends_on:
+    #   lavagna-db:
+    #     condition: service_healthy
+    # ports:
+    #   - 8080:8080
+
+#Lavagna Proxy
+  lavagna-proxy:
+    image: "lavagna-proxy:${VERSION}"
+    container_name: lavagna-proxy
+    # image: nginx:1.23.2
+    build: 
+      context: .
+      dockerfile: Dockerfile.proxy
+    networks:
+      - proxy-net-thin
+    # volumes:
+    #   - ./nginx.d/nginx.conf:/etc/nginx/nginx.conf
+    #   - ./src/main/webapp:/usr/share/nginx/html
+    ports:
+      - 80:80
+    depends_on:
+      - lavagna
+        # condition: service_healthy
+
+
+  lavagna-docs:
+    image: "lavagna-docs:${VERSION}"
+    container_name: lavagna-docs
+    build: 
+      context: .
+      dockerfile: Dockerfile.docs
+    ports: 
+      - 8081:45001
+
+
+networks:
+  db-net-thin:
+    # driver: bridge
+  proxy-net-thin:
+    # driver: bridge
+
+volumes:
+  data-vol-thin:
