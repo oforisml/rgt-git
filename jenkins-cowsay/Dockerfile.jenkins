@@ -29,8 +29,6 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 RUN ./aws/install
 
 
-# Terraform 
-FROM ubuntu:16.04
 
 RUN apt-get update && apt-get install -y \
     wget \
@@ -42,7 +40,9 @@ RUN wget --quiet https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.
   && mv terraform /usr/bin \
   && rm terraform_0.11.3_linux_amd64.zip
 
+
+
 RUN usermod -aG docker jenkins
 
 
-USER jenkins
+# USER jenkins
