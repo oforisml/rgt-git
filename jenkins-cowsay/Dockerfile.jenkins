@@ -28,6 +28,20 @@ RUN source "$HOME/.sdkman/bin/sdkman-init.sh"  && sdk install java 8.0.302-open
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip 
 RUN ./aws/install
 
+
+# Terraform 
+FROM ubuntu:16.04
+
+RUN apt-get update && apt-get install -y \
+    wget \
+    unzip \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN wget --quiet https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip \
+  && unzip terraform_0.11.3_linux_amd64.zip \
+  && mv terraform /usr/bin \
+  && rm terraform_0.11.3_linux_amd64.zip
+
 RUN usermod -aG docker jenkins
 
 
